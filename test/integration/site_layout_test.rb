@@ -22,5 +22,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", user_path
     assert_select "a[href=?]", edit_user_path
     assert_select "a[href=?]", logout_path
+    assert_match @user.following.count.to_s, response.body
+    assert_match @user.followers.count.to_s, response.body
   end
 end
